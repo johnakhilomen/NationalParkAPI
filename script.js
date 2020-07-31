@@ -39,18 +39,17 @@ function getParks(stateCode, limit) {
   //fetch data from the URL
   fetch(url)
     .then((response) => {
-      //we return out response as json if we get data back through the API endpoint
+      //we return our response as json if we get data back through the API's endpoint
       if (response.ok && limit > 0) {
         return response.json();
       }
-      //throw new Error(response.statusText);
       $('#errorMessage').text(response.statusText);
     })
-    .then(responseJson => {
-      displayLists(responseJson);
+    //lets render our JSON response
+    .then(JSONresponse => {
+      displayLists(JSONresponse);
     })
-    .catch(err => {
-      console.log(error);
+    .catch((err) => {
       $('#listItems').empty();
       $('#errorMessage').text(`Something went wrong with your request! Try again`);
     });
